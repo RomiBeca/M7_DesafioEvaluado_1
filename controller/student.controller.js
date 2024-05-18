@@ -7,6 +7,7 @@ export const getStudents = async (req, res) => {
 
     } catch (error) {
         console.log(error)
+        return res.status(500)
     }
 
 }
@@ -17,8 +18,8 @@ export const getOneStudent = async (req, res) => {
         const students = await student.findByRut(rut)
         return res.json(students)
     } catch (error) {
-        console.log(error, "algo ha fallado")
-
+        console.log(error)
+        return res.status(500)
     }
 
 }
@@ -31,6 +32,7 @@ export const createNewStudent = async (req, res) => {
         return res.json(createdStudent)
     } catch (error) {
         console.log(error)
+        return res.status(500)
 
     }
 };
@@ -44,7 +46,7 @@ export const updateStudent = async (req, res) => {
         return res.json(updatedStudent)
     } catch (error) {
         console.log(error)
-
+        return res.status(500)
     }
 }
 
@@ -55,7 +57,8 @@ export const removeStudent = async (req, res) => {
         await student.remove(rut);
         return res.json(student)
     } catch (error) {
-        console.log(error);
+        console.log(error)
+        return res.status(500)
 
     }
 };
